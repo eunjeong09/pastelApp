@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
   },
   dateArea: {
     // flex: 1,
-    backgroundColor: 'pink',
     paddingTop: 70,
     paddingBottom: 50,
   },
@@ -127,13 +126,16 @@ const styles = StyleSheet.create({
   },
   titleArea: {
     // flex: 1,
-    backgroundColor: 'red',
     alignItems: 'center',
     marginBottom: 50,
+    justifyContent: 'center',
+
   },
   title: {
     fontWeight: 'bold',
     fontSize: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   todayColorWrap: {
     flex: 2,
