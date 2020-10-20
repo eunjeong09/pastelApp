@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
     justifyContent: 'center',
-
   },
   title: {
     fontWeight: 'bold',
