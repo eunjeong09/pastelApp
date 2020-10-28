@@ -4,6 +4,7 @@
  */
 
 import React, {Component} from 'react';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,15 +15,89 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import {LocaleConfig} from 'react-native-calendars';
+
+LocaleConfig.locales['fr'] = {
+  monthNames: [
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '10월',
+    '11월',
+    '12월',
+  ],
+  monthNamesShort: [
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '10월',
+    '11월',
+    '12월',
+  ],
+  dayNames: [
+    '일',
+    '월',
+    '화',
+    '수',
+    '목',
+    '금',
+    '토',
+  ],
+  dayNamesShort: ['일',
+  '월',
+  '화',
+  '수',
+  '목',
+  '금',
+  '토',],
+  today: "Aujourd'hui",
+};
+LocaleConfig.defaultLocale = 'fr';
+
 // const Main = () => {
 class CalendarScreen extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.wrap}>
         <Text>Calendar</Text>
+
+        <CalendarList style={styles.calendarArea}
+        // Enable horizontal scrolling, default = false
+        horizontal={true}
+        // Enable paging on horizontal, default = false
+        pagingEnabled={true}
+        // Set custom calendarWidth.
+        calendarWidth={370}
+      />
       </View>
     );
   }
 }
+
+// style
+const styles = StyleSheet.create({
+  wrap:{
+    // flex:1
+  },
+  calendarArea:{
+    // flex:2
+    // justifyContent:'center',
+    backgroundColor:'pink',
+    
+  }
+
+})
 
 export default CalendarScreen;

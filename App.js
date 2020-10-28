@@ -8,7 +8,7 @@ const TabNavigator = createBottomTabNavigator({
   Home: {
     screen: HomeScreen,
   },
-  Chat: {
+  Calendar: {
     screen: CalendarScreen,
   },
   Setting: {
