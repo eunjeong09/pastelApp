@@ -101,9 +101,6 @@ class HomeScreen extends Component {
             }}
           />
         </View>
-        <View style={styles.bottomArea}>
-          <Text>네비게이션 영역</Text>
-        </View>
       </View>
     );
   }
@@ -116,7 +113,8 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-around',
   },
   dateArea: {
-    // flex: 1,
+    flex: 0.5,
+    justifyContent: 'flex-end',
     paddingTop: 70,
     paddingBottom: 50,
   },
@@ -150,6 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 200,
   },
   colorListWrap: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -158,11 +157,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     backgroundColor: 'black',
-  },
-  bottomArea: {
-    flex: 1,
-    backgroundColor: 'blue',
-    marginTop: 20,
   },
 });
 
