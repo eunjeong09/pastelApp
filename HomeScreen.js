@@ -13,6 +13,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // const Main = () => {
 class HomeScreen extends Component {
@@ -45,6 +46,7 @@ class HomeScreen extends Component {
 
         <View style={styles.titleArea}>
           <Text style={styles.title}>오늘 당신의 기분은 어떤 색인가요?</Text>
+          <Icon name="rocket" size={30} color="#900" />
         </View>
         <View style={styles.todayColorWrap}>
           <View
