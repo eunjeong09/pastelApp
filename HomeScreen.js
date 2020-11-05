@@ -27,10 +27,15 @@ class HomeScreen extends Component {
 
   getToday = () => {
     var date = new Date().getDate();
+    var dateResult = date < 10 ? "0"+date : date;
     var month = new Date().getMonth() + 1;
+    var monthResult = month < 10 ? "0"+month : month;
     var year = new Date().getFullYear();
-    return year + '.' + month + '.' + date; //yyyy.mm.dd
+
+    return year + '.' + monthResult + '.' + dateResult; //yyyy.mm.dd
   };
+
+  
 
   changeColor = (color) => {
     this.setState({selectedColor: color});
