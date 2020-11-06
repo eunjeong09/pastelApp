@@ -7,14 +7,26 @@ import CalendarScreen from './CalendarScreen';
 import SettingScreen from './SettingScreen';
 
 
-function ExampleView(props) {
-  return <Icon name="ios-person" size={30} color="#4F8EF7" />;
-}
 const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
-  
 
-  Calendar:CalendarScreen,
+  Calendar: CalendarScreen,
   Setting: SettingScreen,
 });
 export default createAppContainer(TabNavigator);
+
+
+// const MyTabs = () => { 
+//   return(
+//      <Tab.Navigator>
+//        <Tab.Screen name="Home" component={HomeScreen} />
+//        <Tab.Screen name="Settings" component={SettingScreen} />
+//      </Tab.Navigator>);
+//  }
+
+
+// export default MyTabs;
+
+
+
+
