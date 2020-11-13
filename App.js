@@ -1,7 +1,6 @@
 import {createAppContainer} from 'react-navigation';
 import React, {Component} from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
 import SettingScreen from './SettingScreen';
@@ -20,37 +19,42 @@ const TabNavigator = createBottomTabNavigator(
       screen: HomeScreen,
       navigationOptions: {
         tabBarLabel: 'Home', 
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="rocket" size={30} color="#900" />
+        tabBarIcon: ({ focused, tintColor }) => (
+          <Icon focused={focused} name="home" size={25} color={ tintColor }/>
         )
       }
-
-
-      
-      // path: './HomeScreen',
-      // navigationOptions: {
-      //   title: 'Home',
-      //   tabBarLabel: 'Home',
-        // tabBarIcon: ({tintColor, focused}) => (
-        //   // <Text>이유가뭘까</Text>
-        //   <Icon name="rocket" size={30} color="#900" />
-        // )
-      // },
     },
     Calendar: {
       screen: CalendarScreen,
-      path: './CalendarScreen',
+      navigationOptions: {
+        tabBarLabel: 'Calendar', 
+        tabBarIcon: ({ focused, tintColor }) => (
+          <Icon focused={focused} name="calendar" size={25} color={ tintColor }/>
+        )
+      }
     },
     Setting: {
       screen: SettingScreen,
-      path: './SettingScreen',
+      navigationOptions: {
+        tabBarLabel: 'Setting', 
+        tabBarIcon: ({ focused, tintColor }) => (
+          <Icon focused={focused} name="cog" size={25} color={ tintColor }/>
+        )
+      }
     },
   },
+  // {
+  //   tabBarPosition: 'bottom',
+  //   animationEnabled: false,
+  //   swipeEnabled: false,
+    
+  // },
   {
-    tabBarPosition: 'bottom',
-    animationEnabled: false,
-    swipeEnabled: false,
-  },
+    tabBarOptions: {
+        activeTintColor: 'green', 
+        inactiveTintColor: 'grey'
+    }
+  }
 );
 
 export default createAppContainer(TabNavigator);
