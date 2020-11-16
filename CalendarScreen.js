@@ -46,22 +46,8 @@ LocaleConfig.locales['fr'] = {
     '11월',
     '12월',
   ],
-  dayNames: [
-    '일',
-    '월',
-    '화',
-    '수',
-    '목',
-    '금',
-    '토',
-  ],
-  dayNamesShort: ['일',
-  '월',
-  '화',
-  '수',
-  '목',
-  '금',
-  '토',],
+  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
   today: "Aujourd'hui",
 };
 LocaleConfig.defaultLocale = 'fr';
@@ -71,16 +57,17 @@ class CalendarScreen extends Component {
   render() {
     return (
       <View style={styles.wrap}>
-        <Text>Calendar</Text>
-
-        <CalendarList style={styles.calendarArea}
-        // Enable horizontal scrolling, default = false
-        horizontal={true}
-        // Enable paging on horizontal, default = false
-        pagingEnabled={true}
-        // Set custom calendarWidth.
-        calendarWidth={370}
-      />
+        {/* <Text>Calendar</Text> */}
+        <View style={styles.calendarWrap}></View>
+        <CalendarList
+          style={styles.calendarArea}
+          // Enable horizontal scrolling, default = false
+          horizontal={true}
+          // Enable paging on horizontal, default = false
+          pagingEnabled={true}
+          // Set custom calendarWidth.
+          calendarWidth={370}
+        />
       </View>
     );
   }
@@ -88,16 +75,17 @@ class CalendarScreen extends Component {
 
 // style
 const styles = StyleSheet.create({
-  wrap:{
-    // flex:1
+  wrap: {
+    flex: 1,
   },
-  calendarArea:{
-    // flex:2
-    // justifyContent:'center',
-    backgroundColor:'pink',
-    
-  }
 
-})
+  calendarWrap: {
+    flex: 0.5,
+  },
+
+  calendarArea: {
+    backgroundColor: 'pink',
+  },
+});
 
 export default CalendarScreen;
