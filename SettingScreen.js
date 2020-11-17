@@ -18,11 +18,20 @@ import {
 class SettingScreen extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.wrap}>
         <Text>Setting</Text>
+        <View>
+          <Text>색 지정하기</Text>
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  wrap:{
+    flex:1
+  }
+})
 
 export default SettingScreen;
