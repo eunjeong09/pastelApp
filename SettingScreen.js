@@ -21,7 +21,7 @@ class SettingScreen extends Component {
   render() {
     return (
       <View style={styles.wrap}>
-        <Text>Setting</Text>
+        {/* <Text>Setting</Text> */}
         <View style={styles.text}>
           <Text>색 지정하기</Text>
         </View>
