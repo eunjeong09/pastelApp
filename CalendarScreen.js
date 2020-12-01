@@ -49,8 +49,6 @@ LocaleConfig.locales['fr'] = {
   dayNames: ['일', '월', '화', '수', '목', '금', '토'],
   dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
   today: "Aujourd'hui",
-  
-  
 };
 LocaleConfig.defaultLocale = 'fr';
 
@@ -60,42 +58,51 @@ class CalendarScreen extends Component {
     return (
       <View style={styles.wrap}>
         {/* <Text>Calendar</Text> */}
-        <View style={styles.calendarWrap}></View>
-        <CalendarList
-          style={styles.calendarArea}
-          theme={{
-            backgroundColor: '#ffffff',
-            calendarBackground: '#ffffff',
-            textSectionTitleColor: '#b6c1cd',
-            textSectionTitleDisabledColor: '#d9e1e8',
-            // selectedDayBackgroundColor: '#00adf5',
-            // selectedDayTextColor: '#ffffff',
-            // todayTextColor: '#00adf5',
-            // dayTextColor: '#2d4150',
-            // textDisabledColor: '#d9e1e8',
-            // dotColor: '#00adf5',
-            // selectedDotColor: '#ffffff',
-            // arrowColor: 'orange',
-            // disabledArrowColor: '#d9e1e8',
-            // monthTextColor: 'blue',
-            // indicatorColor: 'blue',
-            // textDayFontFamily: 'monospace',
-            // textMonthFontFamily: 'monospace',
-            // textDayHeaderFontFamily: 'monospace',
-            // textDayFontWeight: '300',
-            // textMonthFontWeight: 'bold',
-            // textDayHeaderFontWeight: '300',
-            // textDayFontSize: 16,
-            // textMonthFontSize: 16,
-            // textDayHeaderFontSize: 16
-          }}
-          // Enable horizontal scrolling, default = false
-          horizontal={true}
-          // Enable paging on horizontal, default = false
-          pagingEnabled={true}
-          // Set custom calendarWidth.
-          calendarWidth={370}
-        />
+        <View style={{flex:0.3}}></View>
+        <View style={styles.calendarWrap}>
+          <CalendarList
+            style={styles.calendarArea}
+            theme={{
+              'stylesheet.day.basic': {
+                base: {
+                  width: 30,
+                  height: 50,
+                },
+              },
+              backgroundColor: '#ffffff',
+              calendarBackground: '#ffffff',
+              textSectionTitleColor: '#b6c1cd',
+              textSectionTitleDisabledColor: '#d9e1e8',
+              // selectedDayBackgroundColor: '#00adf5',
+              // selectedDayTextColor: '#ffffff',
+              // todayTextColor: '#00adf5',
+              // dayTextColor: '#2d4150',
+              // textDisabledColor: '#d9e1e8',
+              // dotColor: '#00adf5',
+              // selectedDotColor: '#ffffff',
+              // arrowColor: 'orange',
+              // disabledArrowColor: '#d9e1e8',
+              // monthTextColor: 'blue',
+              // indicatorColor: 'blue',
+              // textDayFontFamily: 'monospace',
+              // textMonthFontFamily: 'monospace',
+              // textDayHeaderFontFamily: 'monospace',
+              // textDayFontWeight: '300',
+              // textMonthFontWeight: 'bold',
+              // textDayHeaderFontWeight: '300',
+              // textDayFontSize: 16,
+              // textMonthFontSize: 16,
+              // textDayHeaderFontSize: 16
+            }}
+            monthFormat={'yyyy MM'}
+            // Enable horizontal scrolling, default = false
+            horizontal={true}
+            // Enable paging on horizontal, default = false
+            pagingEnabled={true}
+            // Set custom calendarWidth.
+            calendarWidth={370}
+          />
+        </View>
       </View>
     );
   }
@@ -107,9 +114,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+
+
   calendarWrap: {
-    backgroundColor: 'blue',
-    flex: 0.5,
+    // backgroundColor: 'blue',
+    flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
+
   },
 
   calendarArea: {
