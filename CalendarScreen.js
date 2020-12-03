@@ -61,11 +61,11 @@ class CalendarScreen extends Component {
         <View style={{flex:0.3}}></View>
         <View style={styles.calendarWrap}>
           <CalendarList
-            style={styles.calendarArea}
+          style={styles.calendarArea}
             theme={{
               'stylesheet.day.basic': {
                 base: {
-                  width: 30,
+                  // width: 30,
                   height: 50,
                 },
               },
@@ -94,6 +94,7 @@ class CalendarScreen extends Component {
               // textMonthFontSize: 16,
               // textDayHeaderFontSize: 16
             }}
+            pastScrollRange={50}
             monthFormat={'yyyy MM'}
             // Enable horizontal scrolling, default = false
             horizontal={true}
@@ -119,13 +120,14 @@ const styles = StyleSheet.create({
   calendarWrap: {
     // backgroundColor: 'blue',
     flex: 1,
+    width:'100%',
     // alignItems: 'center',
-    // justifyContent: 'space-between',
-
+    
   },
-
+  
   calendarArea: {
     backgroundColor: 'pink',
+    width:'100%',
     // flexDirection: 'row',
     // justifyContent: 'space-between'
   },
