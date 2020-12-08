@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
 import SettingScreen from './SettingScreen';
-import {Text} from 'react-native';
+import {Text, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // const TabNavigator = createBottomTabNavigator({

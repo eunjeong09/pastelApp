@@ -23,7 +23,7 @@ class SettingScreen extends Component {
       <View style={styles.wrap}>
         {/* <Text>Setting</Text> */}
         <View style={styles.text}>
-          <Text>색 지정하기</Text>
+          <Text>색 지정하기~~</Text>
         </View>
         <View>
           <DropDownPicker

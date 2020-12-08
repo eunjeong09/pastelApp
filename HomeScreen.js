@@ -12,8 +12,10 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 // const Main = () => {
 class HomeScreen extends Component {
@@ -22,7 +24,22 @@ class HomeScreen extends Component {
 
     this.state = {
       selectedColor: '#eee',
+      selectedNumber:0,
+      storage:'test'
     };
+  }
+
+  // 저장소 내용 가져오기
+  getColorStorage = () =>  {
+    AsyncStorage.getItem('@pastel:color').then((state)=> {
+        // return "저장소 : "+state;
+        if( state != null){
+          // this.setState(JSON.parse(state));
+          this.setState({storage:state});
+          // var test = this.storage;
+          // alert(test);
+        }
+    });
   }
 
   getToday = () => {
@@ -37,9 +54,12 @@ class HomeScreen extends Component {
 
   
 
-  changeColor = (color) => {
+  changeColor = (color,num) => {
     this.setState({selectedColor: color});
+    this.setState({selectedNumber:num});
     //전역변수로 css 수정하기
+    AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state))
+    // alert('color : '+color+', num : '+num);
   };
 
   render() {
@@ -48,6 +68,9 @@ class HomeScreen extends Component {
         <View style={styles.dateArea}>
           <Text style={styles.date}>{this.getToday()}</Text>
         </View>
+        <Text>
+          {this.getColorStorage()}
+        </Text>
 
         <View style={styles.titleArea}>
           <Text style={styles.title}>오늘 당신의 기분은 어떤 색인가요?</Text>
@@ -67,7 +90,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fb9da7');
+                this.changeColor('#fb9da7',1);
               }
             }}
           />
@@ -76,7 +99,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fcccd4');
+                this.changeColor('#fcccd4',2);
               }
             }}
           />
@@ -85,7 +108,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fbdea2');
+                this.changeColor('#fbdea2',3);
               }
             }}
           />
@@ -94,7 +117,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#f2e2c6');
+                this.changeColor('#f2e2c6',4);
               }
             }}
           />
@@ -103,7 +126,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#8eb695');
+                this.changeColor('#8eb695',5);
               }
             }}
           />
