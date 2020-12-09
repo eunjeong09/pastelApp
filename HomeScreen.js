@@ -25,25 +25,31 @@ class HomeScreen extends Component {
     this.state = {
       selectedColor: '#eee',
       selectedNumber:0,
-      storage:'test'
     };
   }
 
   // 저장소 내용 가져오기
   getColorStorage = () =>  {
-    AsyncStorage.getItem('@pastel:color').then((state)=> {
+    AsyncStorage.getItem('@pastel:color').then((color)=> {
         // return "저장소 : "+state;
-        if( state != null){
-          // this.setState(JSON.parse(state));
-          this.setState({storage:state});
-          // var test = this.storage;
-          // alert(test);
-        }
+        // if( state != null){
+        //   // this.setState(JSON.parse(state));
+        //   this.setState({storage:state});
+        //   // var test = this.storage;
+        //   // alert(test);
+        // }
+        alert(color);
+        AsyncStorage.getItem('@pastel:date').then((date) => {
+          alert(date);
+      });
     });
+
+    
   }
 
   getToday = () => {
     var date = new Date().getDate();
+    
     var dateResult = date < 10 ? "0"+date : date;
     var month = new Date().getMonth() + 1;
     var monthResult = month < 10 ? "0"+month : month;
@@ -58,7 +64,14 @@ class HomeScreen extends Component {
     this.setState({selectedColor: color});
     this.setState({selectedNumber:num});
     //전역변수로 css 수정하기
-    AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state))
+    // AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state))
+
+    var today = new Date();
+    // this.setState({today:today});
+    AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state.selectedNumber));
+    AsyncStorage.setItem('@pastel:date',JSON.stringify(today));
+
+
     // alert('color : '+color+', num : '+num);
   };
 
@@ -68,9 +81,7 @@ class HomeScreen extends Component {
         <View style={styles.dateArea}>
           <Text style={styles.date}>{this.getToday()}</Text>
         </View>
-        <Text>
-          {this.getColorStorage()}
-        </Text>
+        <Text>{this.getColorStorage()}</Text>
 
         <View style={styles.titleArea}>
           <Text style={styles.title}>오늘 당신의 기분은 어떤 색인가요?</Text>
