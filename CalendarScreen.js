@@ -13,9 +13,12 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 
 import {LocaleConfig} from 'react-native-calendars';
+
+
 
 LocaleConfig.locales['fr'] = {
   monthNames: [
@@ -54,10 +57,29 @@ LocaleConfig.defaultLocale = 'fr';
 
 // const Main = () => {
 class CalendarScreen extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      selectedColor: '#eee',
+      selectedNumber:0,
+    };
+  }
+
+  //저장소 불러오기
+  getStorage = () =>  {
+    AsyncStorage.getItem('@pastel:color').then((color)=> {
+        alert(color);
+    });
+  }
+
+
+
   render() {
     return (
       <View style={styles.wrap}>
         {/* <Text>Calendar</Text> */}
+        <Text>{this.getStorage()}</Text>
         <View style={{flex: 0.3}}></View>
         <View style={styles.calendarWrap}>
           <CalendarList
