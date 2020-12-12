@@ -3,6 +3,7 @@
  * 2020.10.06
  */
 
+import moment from 'moment';
 import React, {Component} from 'react';
 import {
   SafeAreaView,
@@ -12,10 +13,10 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  AsyncStorage
 } from 'react-native';
+import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // const Main = () => {
 class HomeScreen extends Component {
@@ -28,24 +29,6 @@ class HomeScreen extends Component {
     };
   }
 
-  // 저장소 내용 가져오기
-  getColorStorage = () =>  {
-    AsyncStorage.getItem('@pastel:color').then((color)=> {
-        // return "저장소 : "+state;
-        // if( state != null){
-        //   // this.setState(JSON.parse(state));
-        //   this.setState({storage:state});
-        //   // var test = this.storage;
-        //   // alert(test);
-        // }
-        alert(color);
-        AsyncStorage.getItem('@pastel:date').then((date) => {
-          alert(date);
-      });
-    });
-
-    
-  }
 
   getToday = () => {
     var date = new Date().getDate();
@@ -67,9 +50,11 @@ class HomeScreen extends Component {
     // AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state))
 
     var today = new Date();
+
+    var format = Moment(today).format('YYYY-MM-D');
     // this.setState({today:today});
     AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state.selectedNumber));
-    AsyncStorage.setItem('@pastel:date',JSON.stringify(today));
+    AsyncStorage.setItem('@pastel:date',JSON.stringify(format));
 
 
     // alert('color : '+color+', num : '+num);
@@ -81,7 +66,6 @@ class HomeScreen extends Component {
         <View style={styles.dateArea}>
           <Text style={styles.date}>{this.getToday()}</Text>
         </View>
-        <Text>{this.getColorStorage()}</Text>
 
         <View style={styles.titleArea}>
           <Text style={styles.title}>오늘 당신의 기분은 어떤 색인가요?</Text>

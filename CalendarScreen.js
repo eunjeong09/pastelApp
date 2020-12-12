@@ -13,11 +13,10 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  AsyncStorage
 } from 'react-native';
 
 import {LocaleConfig} from 'react-native-calendars';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 LocaleConfig.locales['fr'] = {
@@ -68,9 +67,21 @@ class CalendarScreen extends Component {
 
   //저장소 불러오기
   getStorage = () =>  {
-    AsyncStorage.getItem('@pastel:color').then((color)=> {
-        alert(color);
+    AsyncStorage.getItem('@pastel:date').then((date)=> {
+        // alert(date);
     });
+  }
+
+  //저장소 모든 내용 불러오기 - test 필요
+  importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+  
+      return result.map(req => JSON.parse(req)).forEach(console.log);
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 
@@ -78,8 +89,8 @@ class CalendarScreen extends Component {
   render() {
     return (
       <View style={styles.wrap}>
-        {/* <Text>Calendar</Text> */}
         <Text>{this.getStorage()}</Text>
+        {/* <View>{this.importData()}</View> */}
         <View style={{flex: 0.3}}></View>
         <View style={styles.calendarWrap}>
           <CalendarList
@@ -114,11 +125,19 @@ class CalendarScreen extends Component {
               // textDayFontSize: 16,
               // textMonthFontSize: 16,
               // textDayHeaderFontSize: 16
+
+              
             }}
             pastScrollRange={50}
             monthFormat={'yyyy MM'}
             horizontal={true}
             pagingEnabled={true}
+            // markedDates={markedDates}
+            markedDates={
+              {
+                '2020-12-10': {selected: true, selectedColor: '#333'},
+              }
+            }
           />
         </View>
       </View>
