@@ -72,13 +72,15 @@ class CalendarScreen extends Component {
     });
   }
 
+
   //저장소 모든 내용 불러오기 - test 필요
   importData = async () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
   
-      return result.map(req => JSON.parse(req)).forEach(console.log);
+      // return result.map(req => JSON.parse(req)).forEach(console.log);
+      return result.map(req => JSON.stringify(req)).forEach(console.log);
     } catch (error) {
       console.error(error)
     }
@@ -87,6 +89,11 @@ class CalendarScreen extends Component {
 
 
   render() {
+    var test = this.importData();
+    for (var key in test) {
+      // alert("key: " + key + " / " + test[key])
+    }
+
     return (
       <View style={styles.wrap}>
         <Text>{this.getStorage()}</Text>
@@ -97,9 +104,9 @@ class CalendarScreen extends Component {
             style={styles.calendarArea}
             theme={{
               'stylesheet.day.basic': {
-                base: {
-                  height: 50,
-                },
+                // base: {
+                //   height: 50,
+                // },
               },
               backgroundColor: '#ffffff',
               calendarBackground: '#ffffff',
@@ -135,7 +142,7 @@ class CalendarScreen extends Component {
             // markedDates={markedDates}
             markedDates={
               {
-                '2020-12-10': {selected: true, selectedColor: '#333'},
+                '2020-12-10': {selected: true, selectedColor: '#333',activeOpacity: 0,disableTouchEvent: true},
               }
             }
           />
@@ -161,6 +168,7 @@ const styles = StyleSheet.create({
   calendarArea: {
     backgroundColor: 'pink',
     width: '100%',
+    height:500,
   },
 });
 
