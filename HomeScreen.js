@@ -53,8 +53,13 @@ class HomeScreen extends Component {
 
     var format = Moment(today).format('YYYY-MM-D');
     // this.setState({today:today});
-    AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state.selectedNumber));
-    AsyncStorage.setItem('@pastel:date',JSON.stringify(format));
+
+    var data = {'colorNum':num, 'date':format}
+
+    // 오늘 날짜인 경우 덮어쓰기
+    AsyncStorage.setItem('@data',JSON.stringify(data));
+    // AsyncStorage 초기화
+    // AsyncStorage.clear();
 
 
     // alert('color : '+color+', num : '+num);
