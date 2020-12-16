@@ -63,8 +63,9 @@ class CalendarScreen extends Component {
     this.data = this.getStorage();
 
     this.state = {
-      selectedColor: '#eee',
-      selectedNumber:0,
+      // selectedColor: '#eee',
+      // selectedNumber:0,
+      result:null
     };
   }
 
@@ -72,11 +73,18 @@ class CalendarScreen extends Component {
   getStorage = () =>  {
     AsyncStorage.getItem('@data').then((data)=> {
         // alert(data);
-        console.log(data);
-        console.log(data["colorNum"]);
-        console.log(data.date);
+        let parse = JSON.parse(data);
+        let color = parse["color"];
+        let date = parse["date"];
+        
 
         //아무것도 없으면 null
+        if(parse != null){
+          var test = {};
+          test[date] = {selected: true, selectedColor: color,activeOpacity: 0,disableTouchEvent: true, startingDay:true, endingDay:true};
+          this.setState({result:test});
+          // console.log(this.state.result);
+        }
         
     });
   }
@@ -104,7 +112,7 @@ class CalendarScreen extends Component {
 
     return (
       <View style={styles.wrap}>
-        <Text>{this.getStorage()}</Text>
+        {/* <Text>{this.getStorage()}</Text> */}
         <View style={{flex: 0.3}}></View>
         <View style={styles.calendarWrap}>
           <CalendarList
@@ -147,11 +155,13 @@ class CalendarScreen extends Component {
             horizontal={true}
             pagingEnabled={true}
             // markedDates={markedDates}
-            markedDates={
-              {
-                '2020-12-10': {selected: true, selectedColor: '#333',activeOpacity: 0,disableTouchEvent: true, startingDay:true, endingDay:true},
-              }
-            }
+
+            markedDates = {this.state.result}
+            // markedDates={
+            //   {
+            //     '2020-12-10': {selected: true, selectedColor: '#333',activeOpacity: 0,disableTouchEvent: true, startingDay:true, endingDay:true},
+            //   }
+            // }
           />
         </View>
       </View>
