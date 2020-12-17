@@ -44,6 +44,15 @@ class HomeScreen extends Component {
   
 
   changeColor = (color,num) => {
+
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
+    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-15'}));
+
+
     this.setState({selectedColor: color});
     this.setState({selectedNumber:num});
     //전역변수로 css 수정하기
@@ -57,7 +66,7 @@ class HomeScreen extends Component {
     var data = {'color':color, 'date':format}
 
     // 오늘 날짜인 경우 덮어쓰기
-    AsyncStorage.setItem('@data',JSON.stringify(data));
+    AsyncStorage.setItem('data',JSON.stringify(data));
     // AsyncStorage 초기화
     // AsyncStorage.clear();
 
@@ -66,6 +75,8 @@ class HomeScreen extends Component {
   };
 
   render() {
+    
+
     return (
       <View style={styles.wrap}>
         <View style={styles.dateArea}>

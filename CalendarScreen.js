@@ -18,7 +18,6 @@ import {
 import {LocaleConfig} from 'react-native-calendars';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
 LocaleConfig.locales['fr'] = {
   monthNames: [
     '1월',
@@ -60,55 +59,60 @@ class CalendarScreen extends Component {
     super();
 
     //로딩시에 무조건
-    this.data = this.getStorage();
+    // this.data = this.getStorage();
 
     this.state = {
-      // selectedColor: '#eee',
-      // selectedNumber:0,
-      result:null
+      result: null,
     };
   }
 
   //저장소 불러오기
-  getStorage = () =>  {
-    AsyncStorage.getItem('@data').then((data)=> {
-        // alert(data);
-        let parse = JSON.parse(data);
-        let color = parse["color"];
-        let date = parse["date"];
-        
+  getStorage = () => {
+    AsyncStorage.getItem('data').then((data) => {
+      // alert(data);
+      // console.log(data); 
+      let parse = JSON.parse(data);
+      let color = parse['color'];
+      let date = parse['date'];
 
-        //아무것도 없으면 null
-        if(parse != null){
-          var test = {};
-          test[date] = {selected: true, selectedColor: color,activeOpacity: 0,disableTouchEvent: true, startingDay:true, endingDay:true};
-          this.setState({result:test});
-          // console.log(this.state.result);
-        }
-        
+      //아무것도 없으면 null
+      if (parse != null) {
+        var test = {};
+        test[date] = {
+          selected: true,
+          selectedColor: color,
+          activeOpacity: 0,
+          disableTouchEvent: true,
+          startingDay: true,
+          endingDay: true,
+        };
+        this.setState({result: test});
+        // console.log(this.state.result);
+      }
+    });
+  };
+
+  // 저장소 전체 내용 불러오기
+  getAll = () => {
+    AsyncStorage.getAllKeys((err, keys) => {
+      AsyncStorage.multiGet(keys, (error, data) => {
+        data.map((result, i, data) => {
+          console.log({ [data[i][0]]: data[i][1] });
+          return true;
+        });
+      });
     });
   }
 
-  
 
-
-  //저장소 모든 내용 불러오기 - test 필요
-  importData = async () => {
-    try {
-      const keys = await AsyncStorage.getAllKeys();
-      const result = await AsyncStorage.multiGet(keys);
-  
-      // return result.map(req => JSON.parse(req)).forEach(console.log);
-      return result.map(req => JSON.stringify(req)).forEach(console.log);
-    } catch (error) {
-      console.error(error)
-    }
+  componentDidMount() {
+    this.getStorage();
+    this.getAll();
+    // console.log(this.state.result);
   }
 
 
-
   render() {
-    // var test = this.importData();
 
     return (
       <View style={styles.wrap}>
@@ -147,8 +151,6 @@ class CalendarScreen extends Component {
               // textDayFontSize: 16,
               // textMonthFontSize: 16,
               // textDayHeaderFontSize: 16
-
-              
             }}
             pastScrollRange={50}
             monthFormat={'yyyy MM'}
@@ -156,7 +158,7 @@ class CalendarScreen extends Component {
             pagingEnabled={true}
             // markedDates={markedDates}
 
-            markedDates = {this.state.result}
+            markedDates={this.state.result}
             // markedDates={
             //   {
             //     '2020-12-10': {selected: true, selectedColor: '#333',activeOpacity: 0,disableTouchEvent: true, startingDay:true, endingDay:true},
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
   calendarArea: {
     backgroundColor: 'pink',
     width: '100%',
-    height:500,
+    height: 500,
   },
 });
 
