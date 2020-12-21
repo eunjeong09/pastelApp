@@ -1,5 +1,5 @@
 import {createAppContainer} from 'react-navigation';
-import React, {Component} from 'react';
+import React, {Component,  lazy} from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
@@ -29,7 +29,9 @@ const TabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Calendar', 
         tabBarIcon: ({ focused, tintColor }) => (
-          <Icon focused={focused} name="calendar" size={25} color={ tintColor }/>
+          <Icon focused={focused} name="calendar" size={25} color={ tintColor } 
+          // onPress={() => console.log('HELP!!')}
+          />
         )
       }
     },
@@ -42,6 +44,7 @@ const TabNavigator = createBottomTabNavigator(
         )
       }
     },
+    
   },
   // {
   //   tabBarPosition: 'bottom',
@@ -50,6 +53,7 @@ const TabNavigator = createBottomTabNavigator(
     
   // },
   {
+    lazy:true,
     tabBarOptions: {
         activeTintColor: 'green', 
         inactiveTintColor: 'grey'

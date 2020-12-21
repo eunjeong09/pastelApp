@@ -55,6 +55,11 @@ LocaleConfig.defaultLocale = 'fr';
 
 // const Main = () => {
 class CalendarScreen extends Component {
+  componentDidMount() {
+    this.getStorage();
+    this.getAll();
+  }
+
   constructor() {
     super();
 
@@ -63,7 +68,9 @@ class CalendarScreen extends Component {
 
     this.state = {
       result: null,
+      updateDate:null
     };
+
   }
 
   //저장소 불러오기
@@ -87,10 +94,17 @@ class CalendarScreen extends Component {
           endingDay: true,
         };
         this.setState({result: test});
-        // console.log(this.state.result);
       }
     });
   };
+
+  updateDate = () => {
+    let update = new Date();
+
+    this.setState({updateDate:update});
+    console.log(update);
+  }
+  
 
   // 저장소 전체 내용 불러오기
   getAll = () => {
@@ -104,20 +118,17 @@ class CalendarScreen extends Component {
     });
   }
 
-
-  componentDidMount() {
-    this.getStorage();
-    this.getAll();
-    // console.log(this.state.result);
-  }
+  
 
 
   render() {
+    const TabBar = Platform.OS === 'ios' ? View : Text;
 
     return (
       <View style={styles.wrap}>
         {/* <Text>{this.getStorage()}</Text> */}
         <View style={{flex: 0.3}}></View>
+        <TabBar />
         <View style={styles.calendarWrap}>
           <CalendarList
             style={styles.calendarArea}
