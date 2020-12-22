@@ -55,16 +55,17 @@ LocaleConfig.defaultLocale = 'fr';
 
 // const Main = () => {
 class CalendarScreen extends Component {
-  componentDidMount() {
-    this.getStorage();
-    this.getAll();
-  }
+
+  componentDidMount () {
+    //tab 클릭시 저장소 내용 불러오기
+    this.props.navigation.addListener('willFocus', (route) => { //tab changed 
+      this.getStorage();
+      this.getAll();
+    });
+  } 
 
   constructor() {
     super();
-
-    //로딩시에 무조건
-    // this.data = this.getStorage();
 
     this.state = {
       result: null,

@@ -7,13 +7,9 @@ import SettingScreen from './SettingScreen';
 import {Text, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// const TabNavigator = createBottomTabNavigator({
-//   Home: HomeScreen,
-//   Calendar: CalendarScreen,
-//   Setting: SettingScreen,
-// });
 
 const TabNavigator = createBottomTabNavigator(
+
   {
     Home: {
       screen: HomeScreen,
@@ -40,7 +36,7 @@ const TabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Setting', 
         tabBarIcon: ({ focused, tintColor }) => (
-          <Icon focused={focused} name="cog" size={25} color={ tintColor }/>
+          <Icon focused={focused} name="cog" size={25} color={ tintColor } />
         )
       }
     },
@@ -57,6 +53,9 @@ const TabNavigator = createBottomTabNavigator(
     tabBarOptions: {
         activeTintColor: 'green', 
         inactiveTintColor: 'grey'
+    },
+    tabBarOnPress: () => {
+      console.log("tabVar");
     }
   }
 );
