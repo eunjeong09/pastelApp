@@ -25,58 +25,58 @@ class HomeScreen extends Component {
 
     this.state = {
       selectedColor: '#eee',
-      selectedNumber:0,
+      selectedNumber: 0,
     };
   }
 
-
   getToday = () => {
     var date = new Date().getDate();
-    
-    var dateResult = date < 10 ? "0"+date : date;
+
+    var dateResult = date < 10 ? '0' + date : date;
     var month = new Date().getMonth() + 1;
-    var monthResult = month < 10 ? "0"+month : month;
+    var monthResult = month < 10 ? '0' + month : month;
     var year = new Date().getFullYear();
 
     return year + '.' + monthResult + '.' + dateResult; //yyyy.mm.dd
   };
 
-  
-
-  changeColor = (color,num) => {
-
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
-    // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-15'}));
-
-
+  changeColor = (color, num) => {
+    
     this.setState({selectedColor: color});
-    this.setState({selectedNumber:num});
+    this.setState({selectedNumber: num});
     //전역변수로 css 수정하기
     // AsyncStorage.setItem('@pastel:color',JSON.stringify(this.state))
-
+    
     var today = new Date();
-
+    
     var format = Moment(today).format('YYYY-MM-D');
     // this.setState({today:today});
-
-    var data = {'color':color, 'date':format}
-
+    
+    var newData = {color: color, date: format};
+    
     // 오늘 날짜인 경우 덮어쓰기
-    AsyncStorage.setItem('data',JSON.stringify(data));
-    // AsyncStorage 초기화
-    // AsyncStorage.clear();
+    // AsyncStorage.setItem('data',JSON.stringify(data));
+    
+    AsyncStorage.getItem('data').then((data) => {
+      const c = data ? JSON.parse(data) : [];
+      c.push(JSON.stringify(newData));
+      AsyncStorage.setItem('data', JSON.stringify(c));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
+      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-15'}));
+    });
 
+
+    // AsyncStorage 초기화
+    AsyncStorage.clear();
 
     // alert('color : '+color+', num : '+num);
   };
 
   render() {
-    
-
     return (
       <View style={styles.wrap}>
         <View style={styles.dateArea}>
@@ -101,7 +101,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fb9da7',1);
+                this.changeColor('#fb9da7', 1);
               }
             }}
           />
@@ -110,7 +110,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fcccd4',2);
+                this.changeColor('#fcccd4', 2);
               }
             }}
           />
@@ -119,7 +119,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#fbdea2',3);
+                this.changeColor('#fbdea2', 3);
               }
             }}
           />
@@ -128,7 +128,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#f2e2c6',4);
+                this.changeColor('#f2e2c6', 4);
               }
             }}
           />
@@ -137,7 +137,7 @@ class HomeScreen extends Component {
             onPress={() => {
               // alert(this.state.selectedColor);
               {
-                this.changeColor('#8eb695',5);
+                this.changeColor('#8eb695', 5);
               }
             }}
           />

@@ -57,13 +57,16 @@ LocaleConfig.defaultLocale = 'fr';
 class CalendarScreen extends Component {
 
   componentDidMount () {
+    this.getStorage();
+    this.getAll();
+
     //tab 클릭시 저장소 내용 불러오기
     this.props.navigation.addListener('willFocus', (route) => { //tab changed 
       this.getStorage();
       this.getAll();
     });
   } 
-
+  
   constructor() {
     super();
 
@@ -74,11 +77,10 @@ class CalendarScreen extends Component {
 
   }
 
-  //저장소 불러오기
-  getStorage = () => {
-    AsyncStorage.getItem('data').then((data) => {
+  //저장소 불러오기 -> 달력 색칠
+  getStorage = async() => {
+    await AsyncStorage.getItem('data').then((data) => {
       // alert(data);
-      // console.log(data); 
       let parse = JSON.parse(data);
       let color = parse['color'];
       let date = parse['date'];
@@ -107,9 +109,9 @@ class CalendarScreen extends Component {
   }
   
 
-  // 저장소 전체 내용 불러오기
-  getAll = () => {
-    AsyncStorage.getAllKeys((err, keys) => {
+  // 저장소 전체 내용 불러오기 -> 콘솔
+  getAll = async() => {
+    await AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (error, data) => {
         data.map((result, i, data) => {
           console.log({ [data[i][0]]: data[i][1] });
