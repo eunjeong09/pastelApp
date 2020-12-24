@@ -26,6 +26,7 @@ class HomeScreen extends Component {
     this.state = {
       selectedColor: '#eee',
       selectedNumber: 0,
+      today:null,
     };
   }
 
@@ -50,6 +51,7 @@ class HomeScreen extends Component {
     var today = new Date();
     
     var format = Moment(today).format('YYYY-MM-D');
+    this.setState({today : format});
     // this.setState({today:today});
     
     var newData = {color: color, date: format};
@@ -58,20 +60,33 @@ class HomeScreen extends Component {
     // AsyncStorage.setItem('data',JSON.stringify(data));
     
     AsyncStorage.getItem('data').then((data) => {
+      console.log(data);
       const c = data ? JSON.parse(data) : [];
+
+      console.log(c);
+      // map으로 배열을 돌리고, 오늘날짜랑 똑같으면 배열에서 지우고, push
+      c.map((data, i) => {
+        let thisData = JSON.parse(data);
+        if(thisData.date === this.state.today){
+          // data.splice(i,1);
+          c.length = c.length -1;
+        }
+      });
+
+      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
+      // c.push(JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
+      // c.push(JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
+      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
+      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
+
       c.push(JSON.stringify(newData));
       AsyncStorage.setItem('data', JSON.stringify(c));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
-      // AsyncStorage.setItem('data',JSON.stringify({'color':'#fcccd4','data':'2020-12-15'}));
+      
     });
 
 
     // AsyncStorage 초기화
-    AsyncStorage.clear();
+    // AsyncStorage.clear();
 
     // alert('color : '+color+', num : '+num);
   };

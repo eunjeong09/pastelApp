@@ -81,9 +81,14 @@ class CalendarScreen extends Component {
   getStorage = async() => {
     await AsyncStorage.getItem('data').then((data) => {
       // alert(data);
-      let parse = JSON.parse(data);
-      let color = parse['color'];
-      let date = parse['date'];
+      // let parse = JSON.parse(data);
+      let parse = JSON.parse(data)[0];
+      let color = parse["color"];
+      let date = parse.date;
+      console.log(parse);
+      console.log(typeof(parse));
+      // console.log(color);
+      // console.log(date);
 
       //아무것도 없으면 null
       if (parse != null) {
@@ -105,7 +110,6 @@ class CalendarScreen extends Component {
     let update = new Date();
 
     this.setState({updateDate:update});
-    console.log(update);
   }
   
 
