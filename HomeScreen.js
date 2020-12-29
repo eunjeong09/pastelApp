@@ -60,10 +60,9 @@ class HomeScreen extends Component {
     // AsyncStorage.setItem('data',JSON.stringify(data));
     
     AsyncStorage.getItem('data').then((data) => {
-      console.log(data);
+      // console.log(data);
       const c = data ? JSON.parse(data) : [];
 
-      console.log(c);
       // map으로 배열을 돌리고, 오늘날짜랑 똑같으면 배열에서 지우고, push
       c.map((data, i) => {
         let thisData = JSON.parse(data);

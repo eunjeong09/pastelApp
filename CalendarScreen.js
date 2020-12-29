@@ -58,12 +58,12 @@ class CalendarScreen extends Component {
 
   componentDidMount () {
     this.getStorage();
-    this.getAll();
+    // this.getAll();
 
     //tab 클릭시 저장소 내용 불러오기
     this.props.navigation.addListener('willFocus', (route) => { //tab changed 
       this.getStorage();
-      this.getAll();
+      // this.getAll();
     });
   } 
   
@@ -80,28 +80,26 @@ class CalendarScreen extends Component {
   //저장소 불러오기 -> 달력 색칠
   getStorage = async() => {
     await AsyncStorage.getItem('data').then((data) => {
-      // alert(data);
-      // let parse = JSON.parse(data);
-      let parse = JSON.parse(data)[0];
-      let color = parse["color"];
-      let date = parse.date;
-      console.log(parse);
-      console.log(typeof(parse));
-      // console.log(color);
-      // console.log(date);
+      let parse = JSON.parse(data);
 
       //아무것도 없으면 null
       if (parse != null) {
-        var test = {};
-        test[date] = {
-          selected: true,
-          selectedColor: color,
-          activeOpacity: 0,
-          disableTouchEvent: true,
-          startingDay: true,
-          endingDay: true,
-        };
-        this.setState({result: test});
+
+        var list = {};
+        for(var i=0;i<parse.length;i++){
+          let color = JSON.parse(parse[i]).color;
+          let date = JSON.parse(parse[i]).date;
+          
+          list[date] = {
+            selected: true,
+            selectedColor: color,
+            activeOpacity: 0,
+            disableTouchEvent: true,
+            startingDay: true,
+            endingDay: true,
+          };
+        }
+        this.setState({result: list});
       }
     });
   };
