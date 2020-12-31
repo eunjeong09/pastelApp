@@ -72,11 +72,11 @@ class HomeScreen extends Component {
         }
       });
 
-      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-10'}));
-      // c.push(JSON.stringify({'color':'#fbdea2','data':'2020-12-11'}));
-      // c.push(JSON.stringify({'color':'#fcccd4','data':'2020-12-12'}));
-      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-13'}));
-      // c.push(JSON.stringify({'color':'#fb9da7','data':'2020-12-14'}));
+      // c.push(JSON.stringify({'color':'#fb9da7','date':'2020-12-10'}));
+      // c.push(JSON.stringify({'color':'#fbdea2','date':'2020-12-11'}));
+      // c.push(JSON.stringify({'color':'#fcccd4','date':'2020-12-12'}));
+      // c.push(JSON.stringify({'color':'#fb9da7','date':'2020-12-13'}));
+      // c.push(JSON.stringify({'color':'#fb9da7','date':'2020-12-14'}));
 
       c.push(JSON.stringify(newData));
       AsyncStorage.setItem('data', JSON.stringify(c));

@@ -89,7 +89,7 @@ class CalendarScreen extends Component {
         for(var i=0;i<parse.length;i++){
           let color = JSON.parse(parse[i]).color;
           let date = JSON.parse(parse[i]).date;
-          
+
           list[date] = {
             selected: true,
             selectedColor: color,
