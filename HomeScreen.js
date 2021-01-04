@@ -50,7 +50,7 @@ class HomeScreen extends Component {
     
     var today = new Date();
     
-    var format = Moment(today).format('YYYY-MM-D');
+    var format = Moment(today).format('YYYY-MM-DD');
     this.setState({today : format});
     // this.setState({today:today});
     

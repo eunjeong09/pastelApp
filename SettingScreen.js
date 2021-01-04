@@ -4,6 +4,7 @@
  */
 
 import React, {Component} from 'react';
+import {ColorPicker} from 'react-native-color-picker';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,9 +23,14 @@ class SettingScreen extends Component {
     return (
       <View style={styles.wrap}>
         {/* <Text>Setting</Text> */}
+        <ColorPicker
+          onColorSelected={(color) => alert(`Color selected: ${color}`)}
+          style={styles.colorPicker}
+        />
         <View style={styles.text}>
-          <Text>색 지정하기~~</Text>
+          <Text>파레트</Text>
         </View>
+        
         <View>
           <DropDownPicker
             items={[
@@ -43,7 +49,12 @@ class SettingScreen extends Component {
 
 const styles = StyleSheet.create({
   wrap: {
+    marginTop:0.3,
     flex: 1,
+  },
+  colorPicker:{
+    flex:0.5,
+    marginTop:100,
   },
   text: {
     flex: 0.5,

@@ -82,6 +82,8 @@ class CalendarScreen extends Component {
     await AsyncStorage.getItem('data').then((data) => {
       let parse = JSON.parse(data);
 
+      console.log(parse);
+
       //아무것도 없으면 null
       if (parse != null) {
 
