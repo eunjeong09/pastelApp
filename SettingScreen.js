@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/Feather';
 
 // const Main = () => {
@@ -54,10 +55,10 @@ const styles = StyleSheet.create({
   },
   colorPicker:{
     flex:0.5,
-    marginTop:100,
+    marginTop:80,
   },
   text: {
-    flex: 0.5,
+    // flex: 0.5,
     backgroundColor: 'pink',
     justifyContent: 'flex-end',
   },

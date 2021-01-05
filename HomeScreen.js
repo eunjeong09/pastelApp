@@ -30,6 +30,35 @@ class HomeScreen extends Component {
     };
   }
 
+  componentDidMount(){
+    this.props.navigation.addListener('willFocus', (route) => { //tab changed 
+      this.getStorage();
+    });
+
+  }
+
+  //저장소 불러오기 -> 오늘날짜 데이터 확인 후 데이터 있으면 색칠
+  getStorage = async() => {
+    await AsyncStorage.getItem('data').then((data) => {
+      let parse = JSON.parse(data);
+
+      //아무것도 없으면 null
+      if (parse != null) {
+        let lastIndex = parse.length -1;
+        let test = JSON.parse(parse[lastIndex]);
+
+        var today = new Date();
+        var format = Moment(today).format('YYYY-MM-DD');
+
+        if(test.date === format){
+          this.setState({selectedColor:test.color});
+        }
+      }
+    });
+  };
+
+
+  //화면 상단에 오늘 날짜 표시
   getToday = () => {
     var date = new Date().getDate();
 
