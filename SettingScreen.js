@@ -20,7 +20,25 @@ import Icon from 'react-native-vector-icons/Feather';
 
 // const Main = () => {
 class SettingScreen extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      colorList:[
+        {color:'#fb9da7'},
+        {color:'#fcccd4'},
+        {color:'#fbdea2'},
+        {color:'#f2e2c6'},
+        {color:'#8eb695'}
+      ]
+    };
+  }
+
   render() {
+    console.log(this.state.colorList);
+    console.log(this.state.colorList['1']);
+
+
     return (
       <View style={styles.wrap}>
         {/* <Text>Setting</Text> */}
@@ -31,7 +49,7 @@ class SettingScreen extends Component {
         <View style={styles.text}>
           <Text>파레트</Text>
         </View>
-        
+
         <View>
           <DropDownPicker
             items={[
@@ -43,6 +61,21 @@ class SettingScreen extends Component {
             onChangeItem={(item) => console.log(item.label, item.value)}
           />
         </View>
+
+        {/* dropdown으로 color picker */}
+        <View style={styles.colorListWrap}>
+          {/* <TouchableOpacity style={[styles.colorList, {backgroundColor:this.state.colorList['1']}]}></TouchableOpacity>
+          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
+          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
+          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
+          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity> */}
+
+          {this.state.colorList.map((e, key) => {
+              return (
+                <TouchableOpacity key={key} style={[styles.colorList, {backgroundColor:e.color}]} />
+              );
+            })}
+        </View>
       </View>
     );
   }
@@ -50,18 +83,29 @@ class SettingScreen extends Component {
 
 const styles = StyleSheet.create({
   wrap: {
-    marginTop:0.3,
+    marginTop: 0.3,
     flex: 1,
   },
-  colorPicker:{
-    flex:0.5,
-    marginTop:80,
+  colorPicker: {
+    flex: 0.5,
+    marginTop: 80,
   },
   text: {
     // flex: 0.5,
     backgroundColor: 'pink',
     justifyContent: 'flex-end',
   },
+  colorListWrap:{
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+
+  },
+  colorList:{
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+  }
 });
 
 export default SettingScreen;
