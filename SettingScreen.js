@@ -24,6 +24,7 @@ class SettingScreen extends Component {
     super();
 
     this.state = {
+      nowIndex:0,
       colorList:[
         {color:'#fb9da7'},
         {color:'#fcccd4'},
@@ -34,16 +35,41 @@ class SettingScreen extends Component {
     };
   }
 
-  render() {
-    console.log(this.state.colorList);
-    console.log(this.state.colorList['1']);
+  clickIndex(data){
+    this.setState({nowIndex:data});
+    
+  }
 
+  colorSelected = (selectedColor) => {
+    //다른 곳을 클릭했을때는 null? int에서 다른 값으로 지정해야하나
+    let index = this.state.nowIndex;  
+
+    let thisColor = this.state.colorList[index];
+
+    let tmp = [];
+    this.state.colorList.map((key, e) => {
+
+      if(e === index){
+        key.color = selectedColor;
+      }
+      tmp.push(key);
+    });
+
+    this.setState({colorList:tmp});
+
+  }
+
+
+  render() {
+
+    
 
     return (
       <View style={styles.wrap}>
         {/* <Text>Setting</Text> */}
         <ColorPicker
-          onColorSelected={(color) => alert(`Color selected: ${color}`)}
+          // onColorSelected={(color) => alert(`Color selected: ${color}`)}
+          onColorSelected={(color) => this.colorSelected(color)}
           style={styles.colorPicker}
         />
         <View style={styles.text}>
@@ -64,16 +90,14 @@ class SettingScreen extends Component {
 
         {/* dropdown으로 color picker */}
         <View style={styles.colorListWrap}>
-          {/* <TouchableOpacity style={[styles.colorList, {backgroundColor:this.state.colorList['1']}]}></TouchableOpacity>
-          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
-          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
-          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity>
-          <TouchableOpacity style={[styles.colorList, {backgroundColor: '#fb9da7'}]}></TouchableOpacity> */}
-
           {this.state.colorList.map((e, key) => {
               return (
-                <TouchableOpacity key={key} style={[styles.colorList, {backgroundColor:e.color}]} />
-              );
+                <TouchableOpacity key={key} style={[styles.colorList, {backgroundColor:e.color}]} 
+                onPress={() => {this.clickIndex(key)}}/>
+                  // onPress={this.clickIndex("abc")}
+                // />
+
+                );
             })}
         </View>
       </View>
