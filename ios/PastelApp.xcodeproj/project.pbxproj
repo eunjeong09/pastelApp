@@ -15,6 +15,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* PastelAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PastelAppTests.m */; };
+		37C5273A25A89ABD003651E7 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 37C5273925A89ABD003651E7 /* www */; };
 		38270A26FACB16CB359FE76F /* libPods-PastelApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1D8E432C09772EC3C6F25E /* libPods-PastelApp-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		838239604DBA7A8BD9D6D0BA /* libPods-PastelApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B37AB024EB2090269B3B15CF /* libPods-PastelApp-tvOS.a */; };
@@ -69,6 +70,7 @@
 		37301201254C510F00F7EA79 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		37301202254C510F00F7EA79 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		37301203254C510F00F7EA79 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		37C5273925A89ABD003651E7 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = PastelApp/www; sourceTree = "<group>"; };
 		4160779A237BC1009D39989C /* Pods-PastelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PastelApp.release.xcconfig"; path = "Target Support Files/Pods-PastelApp/Pods-PastelApp.release.xcconfig"; sourceTree = "<group>"; };
 		662B116D421F5F6840C34936 /* Pods-PastelApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PastelApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PastelApp-tvOS/Pods-PastelApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		675CB2B23478014B15374CB4 /* libPods-PastelApp-PastelAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PastelApp-PastelAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 		13B07FAE1A68108700A75B9A /* PastelApp */ = {
 			isa = PBXGroup;
 			children = (
+				37C5273925A89ABD003651E7 /* www */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -379,6 +382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C5273A25A89ABD003651E7 /* www in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
