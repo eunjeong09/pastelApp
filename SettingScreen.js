@@ -18,6 +18,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/Feather';
 
+import DB from './DbTest';
+
 // const Main = () => {
 class SettingScreen extends Component {
   constructor() {
@@ -67,11 +69,15 @@ class SettingScreen extends Component {
     return (
       <View style={styles.wrap}>
         {/* <Text>Setting</Text> */}
+
+        {/* 
         <ColorPicker
           // onColorSelected={(color) => alert(`Color selected: ${color}`)}
           onColorSelected={(color) => this.colorSelected(color)}
           style={styles.colorPicker}
         />
+         */}
+         
         <View style={styles.text}>
           <Text>파레트</Text>
         </View>
@@ -100,6 +106,7 @@ class SettingScreen extends Component {
                 );
             })}
         </View>
+        <DB />
       </View>
     );
   }
