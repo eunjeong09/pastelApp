@@ -16,14 +16,9 @@ import SQLite from 'react-native-sqlite-storage';
 //   padding: 8px;
 // `;
 
-interface Props {}
-interface State {
-  db: SQLite.SQLiteDatabase;
-  users: Array<IUser>;
-}
 
-export default class App extends React.Component<Props, State> {
-  constructor(props: Props) {
+export default class App extends React.Component{
+  constructor(props) {
     super(props);
 
     const db = SQLite.openDatabase(
@@ -39,13 +34,15 @@ export default class App extends React.Component<Props, State> {
     );
 
     this.state = {
-      db,
-      users: [],
+        db,
+        users: [],
     };
   }
+  
 
   render() {
     const { users } = this.state;
+    // console.log(this.state);
     return (
         <Text>DB</Text>
     //   <Container>
@@ -61,27 +58,71 @@ export default class App extends React.Component<Props, State> {
     );
   }
 
+
+  /*
   componentDidMount() {
-    console.log("comonentDIdMount");
-    const { db } = this.state;
+      const { db } = this.state;
 
     db.transaction(tx => {
       tx.executeSql('SELECT * FROM COLORLIST;', [], (tx, results) => {
         const rows = results.rows;
-        console.log(rows);
         let users = [];
 
         for (let i = 0; i < rows.length; i++) {
             console.log(i);
-        //   users.push({
-        //     ...rows.item(i),
-        //   });
+          users.push({
+            ...rows.item(i),
+          });
         }
 
         this.setState({ users });
       });
-      console.log("함수 끝");
     });
+  }
+  */
+
+  componentDidMount(){
+    errorCB = (err) => {
+        console.log("SQL Error: " + err);
+      }
+       
+      successCB = () => {
+        console.log("SQL executed fine");
+      }
+       
+      openCB = () => {
+        console.log("Database OPENED");
+      }
+
+    //   var db = SQLite.openDatabase({name: 'Pastel.db', location: 'default', createFromLocation: '~www/Pastel.db'}, successCB, openCB);
+       
+    //   var db = SQLite.openDatabase("Pastel.db", openCB, errorCB);
+    const { db } = this.state;
+      db.transaction((tx) => {
+          console.log("test~~");
+        tx.executeSql('SELECT * FROM COLORLIST', [], (tx, results) => {
+            console.log("Query completed");
+       
+            // Get rows with Web SQL Database spec compliance.
+       
+            var len = results.rows.length;
+            for (let i = 0; i < len; i++) {
+                console.log(i);
+                
+            //   let row = results.rows.item(i);
+            //   console.log(`Employee name: ${row.id}, Dept Name: ${row.index}`);
+            }
+       
+            // Alternatively, you can use the non-standard raw method.
+       
+            /*
+              let rows = results.rows.raw(); // shallow copy of rows Array
+       
+              rows.map(row => console.log(`Employee name: ${row.name}, Dept Name: ${row.deptName}`));
+            */
+          });
+      });
+
   }
 
   componentWillUnmount() {
@@ -90,3 +131,6 @@ export default class App extends React.Component<Props, State> {
     db.close();
   }
 }
+
+
+
